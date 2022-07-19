@@ -81,6 +81,20 @@ def q_main(length_command: int, length_massive: int):
         else:
             print(getattr(q, command[0])())
 
+# Реализация через elif работает быстрее
+# def q_main(length_command: int, length_massive: int):
+#     q = MyQueueSized(length_massive)
+#     for _ in range(length_command):
+#         command = input().split()
+#         if command[0] == 'push':
+#             q.push(command[1])
+#         elif command[0] == 'size':
+#             print(q.size())
+#         elif command[0] == 'pop':
+#             print(q.pop())
+#         elif command[0] == 'peek':
+#             print(q.peek())
+
 
 if __name__ == '__main__':
     q_main(length_command(), length_massive())
