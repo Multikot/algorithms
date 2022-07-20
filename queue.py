@@ -25,7 +25,7 @@
 class MyQueueSized:
 
     def __init__(self, max_length) -> None:
-        self.queue = [None] * max_length
+        self.queue = [None for _ in range(max_length)]
         self.max_length = max_length
         self.head = 0
         self.tail = 0
