@@ -5,6 +5,8 @@ def calc(sign: str, a, b: int) -> Union[int, float]:
     """
     Fast calculations, dict mode with lambda func.
     """
+    if sign == '/' and (a == 0 or b == 0):
+        raise ZeroDivisionError('Dont do it')
     operations = {
         '+': lambda a, b: a + b,
         '-': lambda a, b: a - b,
