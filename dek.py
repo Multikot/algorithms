@@ -1,4 +1,4 @@
-#69491240
+#69492773
 
 class Dek:
     ERROR = 'error'
@@ -50,6 +50,15 @@ class Dek:
         self.q_size -= 1
         return tmp_lnk
 
+
+def processing_operations(count_commands):
+        for _ in range(count_commands):
+            command = input().split()
+            if command[0] in ('push_back', 'push_front'):
+                command_list[command[0]](command[1])
+            else:
+                print(command_list[command[0]]())
+
     
 if __name__ == '__main__':
     count_commands = int(input())
@@ -60,9 +69,5 @@ if __name__ == '__main__':
         'pop_back': dek.pop_back,
         'pop_front': dek.pop_front
     }
-    for _ in range(count_commands):
-        command = input().split()
-        if command[0] in ('push_back', 'push_front'):
-            command_list[command[0]](command[1])
-        else:
-            print(command_list[command[0]]())
+
+    processing_operations(count_commands)
