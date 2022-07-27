@@ -1,65 +1,63 @@
-# 69492773
+# 69504558
 
 class Dek:
     ERROR = 'error'
 
     def __init__(self, max_length) -> None:
-        self.queue = [None for _ in range(max_length)]
-        self.max_length = max_length
-        self.head = 0
-        self.tail = 0
-        self.q_size = 0
+        self.__queue = [None for _ in range(max_length)]
+        self._max_length = max_length
+        self._head = 0
+        self._tail = 0
+        self._q_size = 0
 
     def __is_empty(self):
-        return self.q_size == 0
-    
+        return self._q_size == 0
+
     def __is_not_over_max(self):
-        return self.q_size < self.max_length
+        return self._q_size < self._max_length
 
     def push_front(self, value):
-        if self.__is_not_over_max():
-            self.queue[self.head - 1] = value
-            self.head = (self.head - 1) % self.max_length
-            self.q_size += 1
-        else:
-            print(self.ERROR)
+        if not self.__is_not_over_max():
+            return print(self.ERROR)
+        self.__queue[self._head - 1] = value
+        self._head = (self._head - 1) % self._max_length
+        self._q_size += 1
 
     def push_back(self, value):
-        if self.__is_not_over_max():
-            self.queue[self.tail] = value
-            self.tail = (self.tail + 1) % self.max_length
-            self.q_size += 1
-        else:
-            print(self.ERROR)
+        if not self.__is_not_over_max():
+            return print(self.ERROR)
+        self.__queue[self._tail] = value
+        self._tail = (self._tail + 1) % self._max_length
+        self._q_size += 1
 
     def pop_front(self):
         if self.__is_empty():
             return self.ERROR
-        tmp_lnk = self.queue[self.head]
-        self.queue[self.head] = None
-        self.head = (self.head + 1) % self.max_length
-        self.q_size -= 1
+        tmp_lnk = self.__queue[self._head]
+        self.__queue[self._head] = None
+        self._head = (self._head + 1) % self._max_length
+        self._q_size -= 1
         return tmp_lnk
 
     def pop_back(self):
         if self.__is_empty():
             return self.ERROR
-        tmp_lnk = self.queue[self.tail - 1]
-        self.queue[self.tail - 1] = None
-        self.tail = (self.tail - 1) % self.max_length
-        self.q_size -= 1
+        tmp_lnk = self.__queue[self._tail - 1]
+        self.__queue[self._tail - 1] = None
+        self._tail = (self._tail - 1) % self._max_length
+        self._q_size -= 1
         return tmp_lnk
 
 
 def processing_operations(count_commands):
-        for _ in range(count_commands):
-            command = input().split()
-            if command[0] in ('push_back', 'push_front'):
-                command_list[command[0]](command[1])
-            else:
-                print(command_list[command[0]]())
+    for _ in range(count_commands):
+        command = input().split()
+        if command[0] in ('push_back', 'push_front'):
+            command_list[command[0]](command[1])
+        else:
+            print(command_list[command[0]]())
 
-    
+
 if __name__ == '__main__':
     count_commands = int(input())
     dek = Dek(int(input()))

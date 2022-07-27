@@ -1,27 +1,29 @@
-# 69494794
+# 69505419
 
 class Stack:
 
     def __init__(self):
         self.items = []
-    
+
     def push(self, value):
         try:
             self.items.append(int(value))
-        except Exception:
-            raise ('input data is not a number or sign not in operation list')
+        except ValueError:
+            raise ValueError(
+                'input data is not a number or sign not in operation list'
+                )
 
     def pop(self):
         try:
             self.items.pop()
         except IndexError:
-            raise ('list out of range')
-    
+            raise IndexError('list out of range')
+
     def answer(self):
         try:
             return self.items[-1]
-        except Exception as error:
-            raise error
+        except IndexError:
+            raise IndexError('list is empty')
 
 
 operations = {
@@ -42,7 +44,7 @@ def calculated(input_str, stack: Stack):
             try:
                 stack.push(operations[i](a, b))
             except ZeroDivisionError:
-                raise ('dont do it')
+                raise ZeroDivisionError('Division by zero is prohibited')
 
 
 if __name__ == '__main__':

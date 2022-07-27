@@ -72,20 +72,19 @@ def length_massive():
         raise TypeError('input data is not a number')
 
 
-def q_main(length_command: int, length_massive: int):
-    q = MyQueueSized(length_massive)
-    command_list = {
-        'pop': q.pop,
-        'peek': q.peek,
-        'size': q.size
-    }
-    for i in range(length_command):
-        command = input().split()
-        if command[0] == 'push':
-            q.push(command[1])
-        else:
-            print(command_list[command[0]]())
-
-
 if __name__ == '__main__':
+    def q_main(length_command: int, length_massive: int):
+        q = MyQueueSized(length_massive)
+        command_list = {
+            'pop': q.pop,
+            'peek': q.peek,
+            'size': q.size
+        }
+        for i in range(length_command):
+            command = input().split()
+            if command[0] == 'push':
+                q.push(command[1])
+            else:
+                print(command_list[command[0]]())
+
     q_main(length_command(), length_massive())

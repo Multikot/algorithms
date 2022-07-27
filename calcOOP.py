@@ -1,6 +1,6 @@
-class calculated:
+class Сalculated:
 
-    operations = {
+    __operations = {
         '+': lambda a, b: a + b,
         '-': lambda a, b: a - b,
         '*': lambda a, b: a * b,
@@ -20,25 +20,25 @@ class calculated:
             raise TypeError('input data is not a number')
 
     def plus(self):
-        return self.operations.get('+')(*self.__error_or_float())
+        return self.__operations.get('+')(*self.__error_or_float())
 
     def mines(self):
-        return self.operations.get('-')(*self.__error_or_float())
+        return self.__operations.get('-')(*self.__error_or_float())
 
     def mult(self):
-        return self.operations.get('*')(*self.__error_or_float())
+        return self.__operations.get('*')(*self.__error_or_float())
 
     def div(self):
         try:
-            return self.operations.get('/')(*self.__error_or_float())
+            return self.__operations.get('/')(*self.__error_or_float())
         except ZeroDivisionError:
             raise ZeroDivisionError("Don't do it")
 
     def div_remains(self):
-        return self.operations.get('%')(*self.__error_or_float())
+        return self.__operations.get('%')(*self.__error_or_float())
 
     def div_wit_rem(self):
-        return self.operations.get('//')(*self.__error_or_float())
+        return self.__operations.get('//')(*self.__error_or_float())
 
     def all_operations(self):
         return (
@@ -49,12 +49,11 @@ class calculated:
             )
 
 
-def r_input():
-    return (input() for i in range(2))
-
-
 if __name__ == '__main__':
-    q = calculated(*r_input())
+
+    def r_input():
+        return (input() for i in range(2))
+    q = Сalculated(*r_input())
 
     print(q.plus())
     print(q.mines())
